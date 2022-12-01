@@ -1,0 +1,100 @@
+{% extends 'dashboard/base/base.html' %}
+
+{% block title %} Blog Posts | Dashboard {% endblock %}
+{% block custom_css %}
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: hidden;
+}
+table img{
+    width:15%;
+    height:auto;
+}
+{% endblock %}
+
+{% block body %}
+{% load humanize %}
+<div class="container-fluid">
+    {% if messages %}
+<div class="messages" >
+    {% for message in messages %}
+        <div class="alert alert-primary" {% if message.tags %}
+             class="{{ message.tags }}"{% endif %}>{{ message }}
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+
+    {% endfor %}
+</div>
+{% endif %}
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <td>No. </td>
+                                            <td> Date </td>
+                                            <td> Title </td>
+                                            <td> Category </td>
+                                            <td> Views </td>
+                                            <td> Status </td>
+                                            <td> Actions </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for p in post %}
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td> {{ p.created_at|naturalday }}</td>
+                                            <td><a href="{% url 'post' p.id %}">{{ p.title }}</a>  </td>
+                                            <td> {{ p.catagories }} </td>
+                                            <td> {{ p.visit_count }} </td>
+                                            <td> {{ p.status }} </td>
+                                            <td><a href="{% url 'edit_post' p.id %}"><i class="far fa-edit"></i></a>
+                                                {% if p.visible == False %}
+                                                    <a href="{% url 'visible' p.id %}"><i class="fas fa-eye"></i></a>
+                                                {% else %}
+                                                    <a href="{% url 'hidden' p.id %}"><i class="fas fa-eye-slash"></i></a>
+                                                {% endif %}
+                                                <!--  <a href=" " data-toggle="modal" data-target="#delete"><i class="far fa-trash-alt"></i></a> -->
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+     
+                    
+<!-- Modal now -->
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h4> Are You Sure,You want to Delete the Post ?</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="  " method="POST">
+              {% csrf_token %}
+            
+            <input type="submit" class="btn btn-danger" placeholder="Delete">
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'dashboard/base/base.html' %}
+{% block title %} Categories | Dashboard {% endblock %}
+{% block custom_css %}
+.category_wrap{
+    display:flex;
+    flex-wrap:wrap;
+}
+.category{
+    border-radius:15px;
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+    height:auto;
+    background:white;
+    box-sizing: border-box;
+    padding: 15px;
+    margin:5px;
+}
+.category span{
+    width:1px;
+    height:1px;
+    color:black;
+}
+
+{% endblock %}
+{% block body %}
+
+
+<!--
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<form action="{% url 'add_category' %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="exampleInputEmail1"> Add Category </label>
+      <input type="text" class="form-control"  placeholder="Add Category" required>
+    </div>
+   
+    <input type="submit" class="btn btn-primary">
+</form>
+
+<div>
+    <ul>
+        {% for cat in catagory %}
+        <li>  </li>
+        {% endfor %}
+    </ul>
+    
+</div>
+-->
+<div class="container-fluid">
+    {% if messages %}
+<div class="messages" >
+    {% for message in messages %}
+        <div class="alert alert-primary" {% if message.tags %}
+             class="{{ message.tags }}"{% endif %}>{{ message }}
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+
+    {% endfor %}
+</div>
+{% endif %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Add Category</h6>
+        </div>
+
+    <form action="{% url 'add_category' %}" method="POST">
+        <div class="row">
+           
+            <div class="col">
+                <div class="form-group">
+                    {% csrf_token %}
+                <input type="text" class="form-control" placeholder="Add Category" name="catagory">
+                </div>
+            </div>
+            <div class="col">
+                <input type="submit" value="submit">
+            </div>
+        </div>
+    </form>
+
+
+</div>
+    <div class="category_wrap">
+        {% for cat in catagory %}
+        <div class="category">
+            <h4>{{cat}}</h4>
+        </div>
+        {% endfor %}
+    </div>
+
+
+</div>
+{% endblock %}
