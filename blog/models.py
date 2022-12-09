@@ -35,6 +35,7 @@ class Blog(models.Model):
     )
 
     title  = models.CharField(max_length=200, null=True)
+    exerpt = models.CharField(max_length=200, null = True, blank= True)
     detail = RichTextUploadingField(null=True, blank=True)
     image = models.ImageField(upload_to='images/media', null=True, blank=True)
     #catagories = models.ManyToManyField(Catagory)

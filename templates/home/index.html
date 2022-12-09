@@ -11,7 +11,7 @@
 				<div class="col-md-6 pt-6 pb-6 align-self-center">
 					<h1 class="secondfont mb-3 font-weight-bold">{{ first.title }}</h1>
 					<p class="mb-3">
-						{{first.detail |truncatechars:50 }}
+						{{first.exerpt |truncatechars:50 }}
 					</p>
                     
 					<a href="{% url 'single_blog' first.id %}" class="btn btn-dark">Read More</a>
@@ -37,7 +37,7 @@
 					<a class="text-dark" href="{% url 'single_blog' first.id %}"> {{ s_post.title}} </a>
 					</h2>
 					<p class="card-text">
-						{{s_post.detail|truncatechars:50}}
+						{{s_post.exerpt}}
 					</p>
 					<div>
 						<small class="d-block">
@@ -92,7 +92,7 @@
 					<a class="text-dark" href="{% url 'single_blog' p.id %}">{{ p.title }}</a>
 					</h2>
 					<p>
-						{{ p.detail |truncatechars:100 }}
+						{{ p.exerpt }}
 					</p>
 					<div class="card-text text-muted small">
                         {% if p.author.author_image %}
