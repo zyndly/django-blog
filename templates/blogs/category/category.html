@@ -29,10 +29,10 @@
 				</div>
 				<div class="card-body px-0 pb-0 d-flex flex-column align-items-start">
 					<h2 class="h2 font-weight-bold">
-					<a class="text-dark" href="">{{ f_post.title }}</a>
+					<a class="text-dark" href="{% url 'single_blog' f_post.id %}">{{ f_post.title }}</a>
 					</h2>
 					<p class="card-text">
-						{{ f_post.detail |truncatechars:100 }}
+						{{ f_post.exerpt }}
 					</p>
 					<div>
 						{% if f_post.author.author_image %}
@@ -50,10 +50,10 @@
 			<div class="mb-3 d-flex justify-content-between">
 				<div class="pr-3">
 					<h2 class="mb-1 h4 font-weight-bold">
-					<a class="text-dark" href="{% url 'single_blog' p.id  %}"> {{ p.title }} </a>
+					<a class="text-dark" href="{% url 'single_blog' p.id %}"> {{ p.title }} </a>
 					</h2>
 					<p>
-                        {{ p.detail |truncatechars:100 }}
+                        {{ p.excerpt }}
 					</p>
 					<div class="card-text text-muted small">
                         {% if p.author.author_image %}
@@ -104,7 +104,7 @@
 						<li>
 						<span>
 						<h6 class="font-weight-bold">
-						<a href="./article.html" class="text-dark">{{ p.title }}</a>
+						<a href="{% url 'single_blog' p.id %}" class="text-dark">{{ p.title }}</a>
 						</h6>
 						<p class="text-muted">
 							{{ p.author.author.username }} in <a class="text-dark" href="{% url 'catagory' p.id %}">{{ p.catagories }} </a>

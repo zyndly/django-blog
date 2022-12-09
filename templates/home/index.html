@@ -4,6 +4,7 @@
 {% block body %}
 
 
+
 <div class="container">
 	<div class="jumbotron jumbotron-fluid mb-3 pt-0 pb-0 bg-lightblue position-relative">
 		<div class="pl-4 pr-0 h-100 tofront">
@@ -24,17 +25,17 @@
 
 
    
-<div class="container pt-4 pb-4 " style="margin-bottom: 70px;">
+<div class="container pt-4 pb-5 " style="margin-bottom: 100px;">
 	<div class="row">
 		<div class="col-lg-6">
 			
 			<div class="card border-0 mb-4 box-shadow h-xl-300">
 				<div style="background-image: url(./assets/img/demo/3.jpg); ">
-					<img src="{{ first.image_url }}" style="height: 200px; background-size: cover; background-repeat: no-repeat; width: 100%;" alt="">
+					<img src="{{ s_post.image_url }}" style="height: 300px; background-size: cover; background-repeat: no-repeat; width: 100%;" alt="">
 				</div>
 				<div class="card-body px-0 pb-0 d-flex flex-column align-items-start">
 					<h2 class="h4 font-weight-bold">
-					<a class="text-dark" href="{% url 'single_blog' first.id %}"> {{ s_post.title}} </a>
+					<a class="text-dark" href="{% url 'single_blog' s_post.id %}"> {{ s_post.title}} </a>
 					</h2>
 					<p class="card-text">
 						{{s_post.exerpt}}
@@ -80,7 +81,7 @@
 
 
     
-<div class="container">
+<div class="container pt-4">
 	<div class="row justify-content-between">
 		<div class="col-md-8">
 			<h5 class="font-weight-bold spanborder"><span>All Stories</span></h5>
