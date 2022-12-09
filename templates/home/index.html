@@ -11,7 +11,7 @@
 				<div class="col-md-6 pt-6 pb-6 align-self-center">
 					<h1 class="secondfont mb-3 font-weight-bold">{{ first.title }}</h1>
 					<p class="mb-3">
-						{{first.exerpt |truncatechars:50 }}
+						{{first.exerpt}}
 					</p>
                     
 					<a href="{% url 'single_blog' first.id %}" class="btn btn-dark">Read More</a>
@@ -65,9 +65,9 @@
 						<a class="text-dark" href="./article.html">{{p.title }}</a>
 						</h2>
 						<div class="card-text text-muted small">
-							 Jake Bittle in LOVE/HATE
+							{{ p.exerpt }}
 						</div>
-						<small class="text-muted">Dec 12 &middot; 5 min read</small>
+						<small class="text-muted">{{p.created_at|timesince }} ago ; {{ p.visit_count}} views</small>
 					</div>
 				</div>
                 {% endfor %}
