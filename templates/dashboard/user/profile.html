@@ -32,7 +32,7 @@
         {% if user.author.author_image %}
         <img  class="p_image" src="{{ user.author.author_image.url }}" alt="">
         {% else %}
-        <img class="p_image" src="https://genslerzudansdentistry.com/wp-content/uploads/2015/11/anonymous-user.png" alt="">
+        <img class="p_image" src="{% static 'assets/img/Seeable.png' %}" alt="">
         {% endif %}
     </div>
     <div class="col-12 col-md-8">

@@ -296,22 +296,25 @@ class CreatePost(View):
     
     def get(self,request):
         category = Catagory.objects.all()
+        tag = Tag.objects.all()
         context = {
-            'category': category
+            'category': category,
+            'tag':tag
         }
         return render(request,'dashboard/post/create_post.html', context)
 
     def post(self,request):
         author = request.user.author
         title = request.POST.get('title')
+        exerpt = request.POST.get('exerpt')
         detail = request.POST.get('detail')
         image = request.FILES.get('image')
-        #tag = request.POST.get('category')
-        #tag_obj = Tag.objects.get(name=tag)
+        tag = request.POST.get('tag')
+        tag_obj = Tag.objects.get(name=tag)
         category = request.POST.get('category')
         cat_obj = Catagory.objects.get(name=category)
 
-        post_obj = Blog(author=author,title=title, detail=detail,image=image,catagories=cat_obj)
+        post_obj = Blog(author=author,title=title,exerpt=exerpt, detail=detail,image=image,catagories=cat_obj)
         post_obj.save(post_obj)
         messages.success(request,'created Post Successfully')
         return redirect('all_post')
@@ -329,6 +332,7 @@ class AllPost(View):
             'post':post
         }
         return render(request,'dashboard/post/all_post.html',context)
+
 
 # Post detail 
 class PostView(View):
@@ -407,10 +411,10 @@ class DeletePost(View):
     def dispatch(self,request,*args,**kwargs):
         return super().dispatch(request,*args,**kwargs)
     
-
     def post(self, request,id):
-        obj = get_object_or_404(Blog, id=id)
+        obj =  get_object_or_404(Blog, id=id)
         obj.delete()
         messages.success(request,'Post Has Been Deleted')
-        # Redirect To the Same Page
+
+         # Redirect To the Same Page
         return redirect('all_post')

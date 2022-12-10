@@ -27,27 +27,43 @@
       <div class="col-10 mx-auto">
     <form action="{% url 'create_post' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-            <div class="form-group">
-                <label for="title">Add Title </label>
-                <input type="text" id="title" class="form-control" placeholder="Add Blog Title" name="title" required>
+            <div class="form-group fw-bold">
+                <label for="title" >Title</label>
+                <input type="text" id="title" class="form-control" placeholder="Add Post Title" name="title" required>
             </div>
+            <div class="form-group">
+              <label for="exerpt">Exerpt </label>
+              <input type="text" id="title" class="form-control" placeholder="Add Post  Excerpt" name="exerpt" required>
+          </div>
+
             <div class="form-group">
                 <label for="detail">Content Details</label>
                 <textarea class="form-control" id="detail" name='detail' rows="10" placeholder="Add Content Details" required></textarea>
             </div>
+
             <div class="form-group">
                 <label class="form-label" for="customFile">Add Featured Image</label>
                 <input type="file" class="form-control" id="customFile"  name="image" />
             </div>
             <div class="form-group">
-                <label for="exampleFormControlSelect1">Example select</label>
-                <select class="form-control" id="exampleFormControlSelect1" name="category">
-                  <option value=""> Select Category</option>
-                    {% for cat in category %}
-                  <option>{{ cat }}</option>
-                    {% endfor %}
-                </select>
-              </div>
+              <label for="exampleFormControlSelect1">Select Category</label>
+              <select class="form-control" id="exampleFormControlSelect1" name="category">
+                <option value=""> Select Category</option>
+                  {% for cat in category %}
+                <option>{{ cat }}</option>
+                  {% endfor %}
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Select Location</label>
+              <select class="form-control" id="exampleFormControlSelect1" name="tag">
+                <option value="">Select Location</option>
+                  {% for tag in tag %}
+                <option>{{ tag }}</option>
+                  {% endfor %}
+              </select>
+            </div>
                 <input type="submit" value="submit">
         </form>
     </div>
@@ -81,8 +97,22 @@ function myFunction() {
     }
   }
 </script>
+<!--
 
 <script>
   CKEDITOR.replace('detail');
 </script>
+
+--->
+<script>
+  if (document.getElementById('detail')) {
+    CKEDITOR.replace('detail', {
+      width: 500,
+      height: 350,
+      resize_dir: 'both',
+      resize_maxWidth: 800,
+      customConfig: 'config.js',
+    });
+  }
+  </script>
 {% endblock %}

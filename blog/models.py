@@ -31,7 +31,7 @@ class Tag(models.Model):
 class Blog(models.Model):
     status = (
         ('active','active'),
-        ('pending','pending')
+        ('active','active')
     )
 
     title  = models.CharField(max_length=200, null=True)
@@ -41,7 +41,7 @@ class Blog(models.Model):
     #catagories = models.ManyToManyField(Catagory)
     catagories = models.ForeignKey(Catagory,on_delete=models.DO_NOTHING, null=True)
     tags = models.ManyToManyField(Tag, blank=True)
-    status = models.CharField(max_length=20, choices=status, default='pending')
+    status = models.CharField(max_length=20, choices=status, default='active')
     #show_hide = models.CharField(max_length=5,choices=visibility, default='show')
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     featured  = models.BooleanField(default=False)

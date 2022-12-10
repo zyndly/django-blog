@@ -20,7 +20,6 @@
 {% endif %}
 
 {% if user.is_authenticated %}
-{% if user.id == user.author.id %}
 <div class="row">
     <div class="col">
         <div class="card shadow mb-4">
@@ -60,6 +59,7 @@
                           <option value="{{ cat}}">{{ cat }}</option>
                             {% endfor %}
                         </select>
+
                       </div>
                     </div>
                         <input type="submit" value="submit" class="btn btn-primary">
@@ -78,11 +78,11 @@
 {% else %}
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-    <h3>Warning ! You are Not Allowed To come Here</h3>
+    <h3>Warning! You are not allowed to come here</h3>
     </div>
 </div>
 
-{% endif %}
+
 {% endif %}
   
 
