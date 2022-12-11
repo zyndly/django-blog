@@ -156,5 +156,8 @@ Thumbs.db
 # profiling data
 .prof
 
+# For Database Visualization
+toseemydb.py
+
 
 # End of https://www.toptal.com/developers/gitignore/api/django
