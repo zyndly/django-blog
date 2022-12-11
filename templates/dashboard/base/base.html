@@ -77,20 +77,16 @@
                     </div>
                 </div>
             </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Category
-            </div>
-
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'category' %}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Category</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'email_list' %}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Emails</span></a>
             </li>
         </ul>
         <!-- End of Sidebar -->
@@ -121,7 +117,7 @@
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                                 aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
+                                <form class="form-inline mr-auto w-3000 navbar-search">
                                     <div class="input-group">
                                         <input type="text" class="form-control bg-light border-0 small"
                                             placeholder="Search for..." aria-label="Search"
@@ -243,9 +239,6 @@
 
     <!-- Core plugin JavaScript-->
     <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
 
 
     <!-- Page level plugins -->

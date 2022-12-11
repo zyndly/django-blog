@@ -32,9 +32,13 @@
                 <input type="text" id="title" class="form-control" placeholder="Add Post Title" name="title" required>
             </div>
             <div class="form-group">
+              <label for="location">Location </label>
+              <input type="text" id="title" class="form-control" placeholder="Add Post Location" name="location" required>
+            </div>
+            <div class="form-group">
               <label for="exerpt">Exerpt </label>
               <input type="text" id="title" class="form-control" placeholder="Add Post  Excerpt" name="exerpt" required>
-          </div>
+            </div>
 
             <div class="form-group">
                 <label for="detail">Content Details</label>
@@ -54,17 +58,7 @@
                   {% endfor %}
               </select>
             </div>
-
-            <div class="form-group">
-              <label for="exampleFormControlSelect1">Select Location</label>
-              <select class="form-control" id="exampleFormControlSelect1" name="tag">
-                <option value="">Select Location</option>
-                  {% for tag in tag %}
-                <option>{{ tag }}</option>
-                  {% endfor %}
-              </select>
-            </div>
-                <input type="submit" value="submit">
+                <input type="submit" value="submit" class="btn btn-success">
         </form>
     </div>
     </div>

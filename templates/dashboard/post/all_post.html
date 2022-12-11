@@ -40,6 +40,7 @@ table img{
                                             <td>No. </td>
                                             <td> Date </td>
                                             <td> Title </td>
+                                            <td> Location </td>
                                             <td> Category </td>
                                             <td> Views </td>
                                             <td> Status </td>
@@ -52,6 +53,7 @@ table img{
                                             <td>{{ forloop.counter }}</td>
                                             <td> {{ p.created_at|naturalday }}</td>
                                             <td><a href="{% url 'post' p.id %}">{{ p.title }}</a>  </td>
+                                            <td> {{ p.location }} </td>
                                             <td> {{ p.catagories }} </td>
                                             <td> {{ p.visit_count }} </td>
                                             <td> {{ p.status }} </td>
@@ -82,7 +84,7 @@ table img{
           </button>
         </div>
         <div class="modal-body">
-          <h4> Are You Sure,You want to Delete the Post ?</h4>
+          <h4> Are You Sure, You want to Delete the Post ?</h4>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

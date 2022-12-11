@@ -137,7 +137,7 @@ class ContactViews(View):
             subject = request.POST.get('subject')
             contact = Contact(name=name, email=email, message=message, subject=subject)
             contact.save()
-        return render(request, 'home/contact.html')
+        return render(request, 'home/contact.html',)
 
         
 
@@ -152,7 +152,7 @@ class SearchView(View):
             posts = post.filter(
                 Q(title__icontains=search) |
                 Q(catagories__name__icontains=search) |
-                Q(detail__icontains = search)
+                Q(location__icontains = search)
                 
             )
         context ={

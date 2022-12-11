@@ -1,0 +1,87 @@
+{% extends 'dashboard/base/base.html' %}
+
+{% block title %} Blog Posts | Dashboard {% endblock %}
+{% block custom_css %}
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: hidden;
+}
+table img{
+    width:15%;
+    height:auto;
+}
+{% endblock %}
+
+{% block body %}
+{% load humanize %}
+<div class="container-fluid">
+    {% if messages %}
+<div class="messages" >
+    {% for message in messages %}
+        <div class="alert alert-primary" {% if message.tags %}
+             class="{{ message.tags }}"{% endif %}>{{ message }}
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+
+    {% endfor %}
+</div>
+{% endif %}
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <td>No. </td>
+                                            <td> Email </td>
+                                            <td> Actions </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for e in email_list %}                                       
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                     
+                                            <td><a href="#">{{ e.email }}</a>  </td>
+                                            <td><a href="" data-toggle="modal" data-target="#delete-email"><i class="far fa-trash-alt"></i></a></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+<!-- Modal now -->
+<div class="modal fade" id="delete-email" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h4> Are you sure, you want to delete the Email?</h4>
+        </div>
+        <div class="modal-footer">
+        
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        {% for e in email_list %}  
+          <form action="{% url 'delete_email' e.id %}" method="POST">
+        {% endfor %}
+              {% csrf_token %}
+        
+            <input type="submit" class="btn btn-danger" placeholder="Delete">
+        
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

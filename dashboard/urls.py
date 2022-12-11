@@ -30,4 +30,8 @@ urlpatterns = [
     path('update-tag/', views.UpdateTag.as_view(), name='update_tag'),
     path('delete-tag/', views.DeleteTag.as_view(), name='delete_tag'),
     
+    # email
+
+    path('email_listing/', views.AllEmail.as_view(), name='email_list'),
+    path('email_listing/delete/<str:id>', views.DeleteEmail.as_view(), name="delete_email"),
 ]

@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponseRedirect
 from django.views import View
-from blog.models import Blog, Catagory, Tag
+from blog.models import Blog, Catagory, Tag, EmailSignUp
 from .models import Author
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -306,15 +306,16 @@ class CreatePost(View):
     def post(self,request):
         author = request.user.author
         title = request.POST.get('title')
+        location = request.POST.get('location')
         exerpt = request.POST.get('exerpt')
         detail = request.POST.get('detail')
         image = request.FILES.get('image')
-        tag = request.POST.get('tag')
-        tag_obj = Tag.objects.get(name=tag)
+        #tag = request.POST.get('tag')
+        #tag_obj = Tag.objects.get(name=tag)
         category = request.POST.get('category')
         cat_obj = Catagory.objects.get(name=category)
 
-        post_obj = Blog(author=author,title=title,exerpt=exerpt, detail=detail,image=image,catagories=cat_obj)
+        post_obj = Blog(author=author,title=title,location=location,exerpt=exerpt, detail=detail,image=image,catagories=cat_obj)
         post_obj.save(post_obj)
         messages.success(request,'created Post Successfully')
         return redirect('all_post')
@@ -418,3 +419,31 @@ class DeletePost(View):
 
          # Redirect To the Same Page
         return redirect('all_post')
+
+# View Email
+class AllEmail(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+    
+    def get(self,request):
+        
+        email_list = EmailSignUp.objects.all()
+        context = {
+            'email_list':email_list
+        }
+        return render(request,'dashboard/post/email_listing.html', context)
+
+#Delete Email
+class DeleteEmail(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+    
+    def post(self, request,id):
+        delete_email =  get_object_or_404(EmailSignUp,id=id)
+        delete_email.delete()
+        messages.success(request,'Email Has Been Deleted')
+
+        # Redirect To the Same Page
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

@@ -6,6 +6,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from dashboard import views
 
+admin.site.site_header  =  "Seeable Tarlac Admin"  
+admin.site.site_title  =  "Seeable Tarlac"
+admin.site.index_title  =  "Admin"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('sign-up/', views.CreateAuthor.as_view(), name='create_user'),

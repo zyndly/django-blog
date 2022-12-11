@@ -35,12 +35,13 @@ class Blog(models.Model):
     )
 
     title  = models.CharField(max_length=200, null=True)
+    location = models.CharField(max_length=200, null = True, blank= True)
     exerpt = models.CharField(max_length=200, null = True, blank= True)
     detail = RichTextUploadingField(null=True, blank=True)
     image = models.ImageField(upload_to='images/media', null=True, blank=True)
     #catagories = models.ManyToManyField(Catagory)
     catagories = models.ForeignKey(Catagory,on_delete=models.DO_NOTHING, null=True)
-    tags = models.ManyToManyField(Tag, blank=True)
+    #tags = models.ManyToManyField(Tag, blank=True)
     status = models.CharField(max_length=20, choices=status, default='active')
     #show_hide = models.CharField(max_length=5,choices=visibility, default='show')
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
@@ -90,7 +91,7 @@ class EmailSignUp(models.Model):
     email  = models.EmailField(blank=True)
 
     class Meta:
-        verbose_name_plural = " User Emails"
+        verbose_name_plural = "User Emails"
 
     def __str__(self):
         return self.email

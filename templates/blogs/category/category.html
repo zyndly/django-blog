@@ -32,6 +32,7 @@
 					<a class="text-dark" href="{% url 'single_blog' f_post.id %}">{{ f_post.title }}</a>
 					</h2>
 					<p class="card-text">
+						{{ f_post.location }}
 						{{ f_post.exerpt }}
 					</p>
 					<div>
@@ -128,7 +129,7 @@
 		<div class="row justify-content-between">
 			<div class="col-md-6">
 				<h5 class="font-weight-bold secondfont">Become a member</h5>
-				 Get the latest news right in your inbox. It's free and you can unsubscribe at any time. We hate spam as much as we do, so we never spam!
+				 Get the latest news right in your inbox. We hate spam as much as we do, so we never spam!
 			</div>
 			<div class="col-md-6">
                 <form action="{% url 'subscribe' %}" method="POST">
