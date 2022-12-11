@@ -11,8 +11,10 @@
 			<div class="row justify-content-between">
 				<div class="col-md-6 pt-6 pb-6 align-self-center">
 					<h1 class="secondfont mb-3 font-weight-bold">{{ first.title }}</h1>
-					<p class="mb-3">
+					<p class="">
 						{{first.location}}
+					</p>
+					<p class="mb-3">
 						{{first.exerpt}}
 					</p>
                     
@@ -40,6 +42,8 @@
 					</h2>
 					<p class="card-text">
 						{{s_post.location}}
+					</p>
+					<p class="card-text">
 						{{s_post.exerpt}}
 					</p>
 					<div>
@@ -69,6 +73,8 @@
 						</h2>
 						<div class="card-text text-muted small">
 							{{ p.location }}
+						</div>	
+						<div class="card-text text-muted small">
 							{{ p.exerpt }}
 						</div>
 						<small class="text-muted">{{p.created_at|timesince }} ago ; {{ p.visit_count}} views</small>
@@ -97,6 +103,8 @@
 					</h2>
 					<p>
 						{{ p.location }}
+					</p>
+					<p>
 						{{ p.exerpt }}
 					</p>
 					<div class="card-text text-muted small">
