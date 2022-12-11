@@ -12,9 +12,11 @@ admin.site.index_title  =  "Admin"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
     path('sign-up/', views.CreateAuthor.as_view(), name='create_user'),
     path('login/',views.LoginView.as_view(),name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
+    path('', include("django.contrib.auth.urls")), # <-- added
     # app url configs
     path('',include('blog.urls')),
     path('dashboard/',include('dashboard.urls')),

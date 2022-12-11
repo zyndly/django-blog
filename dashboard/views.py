@@ -134,7 +134,10 @@ class LoginView(View):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('dashboard')
+            if request.user.is_superuser:
+                return redirect('/admin')
+            else:
+                return redirect('dashboard')
         else:
             messages.warning(request, 'username or password didn`t match')
             return redirect('login')
