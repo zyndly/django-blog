@@ -22,7 +22,7 @@ class Dashboard(View):
 
     def get(self,request,*args,**kwargs):
         user = request.user 
-        post = user.author.blog_set.all()
+        post = Blog.objects.all()
         post_count = post.count()
         post_active = user.author.blog_set.filter(status='active')
         post_active_count = post_active.count()
@@ -161,6 +161,7 @@ class PostListingActive(View):
     def get(self,request,*args,**kwargs):
         user = request.user 
         post_active = user.author.blog_set.filter(status='active').order_by('-id')
+    #    post_active = Blog.objects.all().filter(status='active').order_by('-id')
         context={
             'post_active':post_active
         }    
@@ -331,7 +332,8 @@ class AllPost(View):
     
     def get(self,request):
         user = request.user.author
-        post = user.blog_set.all().order_by('-id')
+        #post = user.blog_set.all().order_by('-id')
+        post = Blog.objects.all().filter(status='active').order_by('-id')
         context = {
             'post':post
         }
@@ -450,3 +452,17 @@ class DeleteEmail(View):
 
         # Redirect To the Same Page
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+#Comment Views
+class AllComments(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+    
+    def get(self,request):
+        
+        comment_list = Comment.objects.all()
+        context = {
+            'comment_list':comment_list
+        }
+        return render(request,'dashboard/post/all_comments.html', context)

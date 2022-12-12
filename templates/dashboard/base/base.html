@@ -132,7 +132,9 @@
                             </div>
                         </li>
                         <!-- Visit website link -->
-                        <li class="nav-item mx-1"> <a class="nav-link" style="color:rgb(59, 176, 23)" href="{% url 'home' %}" target="_blank"> <i class="fa fa-link"> Visit Website</i> </a></li>
+                        <li class="nav-item mx-1"> 
+                            <a class="nav-link" style="color:rgb(59, 176, 23)" href="{% url 'home' %}" target="_blank"> <i class="fa fa-link"> Visit Website</i> </a>
+                        </li>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -151,6 +153,10 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
+                                <!-- 
+                                    
+                                    TODO FIX: Update Image via frontend dashboard error.
+                                    
                                 <a class="dropdown-item" href="{% url 'profile' %}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -159,6 +165,8 @@
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
+
+                                -->
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{% url 'logout' %}" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

@@ -35,4 +35,7 @@ urlpatterns = [
 
     path('email_listing/', views.AllEmail.as_view(), name='email_list'),
     path('email_listing/delete/<str:id>', views.DeleteEmail.as_view(), name="delete_email"),
+
+    path('comments_list/', views.AllEmail.as_view(), name='comment_list'),
+    path('comments_list/delete/<str:id>', views.DeleteEmail.as_view(), name="delete_email"),
 ]
