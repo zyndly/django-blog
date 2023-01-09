@@ -50,6 +50,9 @@ INSTALLED_APPS = [
     # text editor
     'ckeditor',
     'ckeditor_uploader',
+
+    # for diagram
+    'django_extensions',
 ]
 
 X_FRAME_OPTIONS='SAMEORIGIN'
@@ -154,5 +157,15 @@ CKEDITOR_CONFIGS = {
         'width': '100%',
     },
 }
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
+
+MODEL_INFO_FIELD_CLASS = True
+MODEL_INFO_DB_TYPE = True
+MODEL_INFO_SIGNATURE = True
+MODEL_INFO_ALL_METHODS = True
 
 LOGOUT_REDIRECT_URL = "/"
